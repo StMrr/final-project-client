@@ -35,7 +35,7 @@ const useStyles = makeStyles( () => ({
 }));
 
 const NewStudentView = (props) => {
-  const {handleChange, handleSubmit } = props;
+  const { handleChange, handleSubmit, gpaError } = props; // Include gpaError from props
   const classes = useStyles();
 
   // Render a New Student view with an input form
@@ -66,6 +66,22 @@ const NewStudentView = (props) => {
             <br/>
             <br/>
 
+            <label style={{color:'#11153e', fontWeight: 'bold'}}> Email: </label>
+            <input type="text" name="email" onChange={(e) => handleChange(e)} />
+            <br/>
+            <br/>
+
+            <label style={{color:'#11153e', fontWeight: 'bold'}}> Image URL: </label>
+            <input type="text" name="imageUrl" onChange={(e) => handleChange(e)} />
+            <br/>
+            <br/>
+
+            <label style={{color:'#11153e', fontWeight: 'bold'}}> GPA: </label>
+            <input type="text" name="gpa" onChange={(e) => handleChange(e)} />
+            <br/>
+            <br/>
+
+            {gpaError && <p style={{ color: 'red' }}>{gpaError}</p>} 
             <Button variant="contained" color="primary" type="submit">
               Submit
             </Button>
