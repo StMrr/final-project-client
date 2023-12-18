@@ -5,7 +5,7 @@ This is a Reducer function that accepts 2 parameters: the previous state object 
 Depending on the Action object, the Reducer updates the State and return the new State object.
 It also defines the State and its default initial value.
 ================================================== */
-import { FETCH_CAMPUS, DELETE_STUDENT, DELETE_CAMPUS, EDIT_CAMPUS } from "../actions/actionTypes";  // Import Action Type
+import { ADD_CAMPUS, FETCH_CAMPUS, DELETE_STUDENT, DELETE_CAMPUS, EDIT_CAMPUS } from "../actions/actionTypes";  // Import Action Type
 
 // Define default Initial State
 const initialState = {
@@ -25,6 +25,10 @@ const campus = (state = initialState, action) => {  // Use "initialState" as def
     case DELETE_CAMPUS:
       return state = null;
     case EDIT_CAMPUS:
+      return {
+        ...state
+      }
+    case ADD_CAMPUS:
       return {
         ...state
       }

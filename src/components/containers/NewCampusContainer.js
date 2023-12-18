@@ -9,25 +9,27 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import Header from './Header';
-import NewCampusView from '../views/NewCampusView';
 import { addCampusThunk } from '../../store/thunks';
+
+import NewCampusView from '../views/NewCampusView';
 
 class NewCampusContainer extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        firstname: '',
-        lastname: '',
+        name: '',
         address: '',
         description: '',
         imageUrl: '',
-        addressError: '' // New state for address error message
+        addressError: '', // New state for address error message
+        redirect: false,
+        redirectId: null
       };
     }
 
     handleChange = (event) => {
         const { name, value } = event.target;
-   
+
 
         if (name === "address") {
             var addressRegex = /^[0-9A-Za-z\s\.,#\-]+$/;
@@ -41,10 +43,10 @@ class NewCampusContainer extends Component {
                 this.setState({addressError: ''});
                 // console.log("Address is valid:", address);
                 // return true;
-            }     
+            }
         }
         this.setState({[name]: value,});
-            
+
     }
 
 
@@ -56,35 +58,35 @@ handleSubmit = async (event) => {
         return;
       }
 
-    
+
       let campus = {
-        firstname: this.state.firstname,
-        lastname: this.state.lastname,
+        name: this.state.name,
         address: this.state.address,
         description: this.state.description,
         imageUrl: this.state.imageUrl
       };
 
-      let newStudent = await this.props.addCampus(campus);
+    let newCampus = await this.props.addCampus(campus);
 
     this.setState({
-      firstname: '',
-      lastname: '',
+      name: '',
       address: '',
       description: '',
       imageUrl: '',
-      addressError: ''
+      addressError: '',
+      redirect: true,
+      redirectId: newCampus.id
     });
   };
 
 
-    componentWillUnmount() {
-    this.setState({ addressError: ''});
-  }
+  //   componentWillUnmount() {
+  //   this.setState({ addressError: ''});
+  // }
 
   render() {
-    if (this.state) {
-      return <Redirect to={`/campus/${this.state.addressError}`} />;
+    if (this.state.redirect) {
+      return <Redirect to={`/campus/${this.state.redirectId}`} />;
     }
 
   return (
@@ -105,6 +107,5 @@ const mapDispatch = (dispatch) => {
       addCampus: (campus) => dispatch(addCampusThunk(campus)),
     };
   };
-  
-  export default connect('', mapDispatch)(NewCampusContainer);
-  
+
+  export default connect(null, mapDispatch)(NewCampusContainer);

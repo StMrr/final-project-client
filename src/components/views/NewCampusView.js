@@ -12,7 +12,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 // Create styling for the input form
 const useStyles = makeStyles( () => ({
-    formContainer:{  
+    formContainer:{
       width: '500px',
       backgroundColor: '#f0f0f5',
       borderRadius: '5px',
@@ -22,7 +22,7 @@ const useStyles = makeStyles( () => ({
       flexGrow: 1,
       textAlign: 'left',
       textDecoration: 'none'
-    }, 
+    },
     customizeAppBar:{
       backgroundColor: '#11153e',
       shadows: ['none'],
@@ -37,14 +37,14 @@ const useStyles = makeStyles( () => ({
   }));
 
   const NewCampusView = (props) => {
-    const {handleChange, handleSubmit } = props;
+    const {handleChange, handleSubmit, addressError } = props;
     const classes = useStyles();
-  
+
     // Render a New Campus view with an input form
     return (
       <div>
         <h1>New Campus</h1>
-  
+
         <div className={classes.root}>
           <div className={classes.formContainer}>
             <div className={classes.formTitle}>
@@ -53,32 +53,27 @@ const useStyles = makeStyles( () => ({
               </Typography>
             </div>
             <form style={{textAlign: 'center'}} onSubmit={(e) => handleSubmit(e)}>
-              <label style= {{color:'#11153e', fontWeight: 'bold'}}>First Name: </label>
-              <input type="text" name="firstname" onChange ={(e) => handleChange(e)} />
+              <label style= {{color:'#11153e', fontWeight: 'bold'}}>Name: </label>
+              <input type="text" name="name" onChange ={(e) => handleChange(e)} />
               <br/>
               <br/>
-  
-              <label style={{color:'#11153e', fontWeight: 'bold'}}>Last Name: </label>
-              <input type="text" name="lastname" onChange={(e) => handleChange(e)} />
-              <br/>
-              <br/>
-            
-              <label style={{color:'#11153e', fontWeight: 'bold'}}> Address: </label>
+
+              <label style={{color:'#11153e', fontWeight: 'bold'}}>Address: </label>
               <input type="text" name="address" onChange={(e) => handleChange(e)} />
               <br/>
               <br/>
 
               <label style={{color:'#11153e', fontWeight: 'bold'}}> Description: </label>
-            <input type="text" name="description" onChange={(e) => handleChange(e)} />
-            <br/>
-            <br/>
-  
+              <input type="text" name="description" onChange={(e) => handleChange(e)} />
+              <br/>
+              <br/>
+
               <label style={{color:'#11153e', fontWeight: 'bold'}}> Image URL: </label>
             <input type="text" name="imageUrl" onChange={(e) => handleChange(e)} />
             <br/>
             <br/>
-  
-            {addressError && <p style={{ color: 'red' }}>{addressError}</p>} 
+
+            {addressError && <p style={{ color: 'red' }}>{addressError}</p>}
               <Button variant="contained" color="primary" type="submit">
                 Submit
               </Button>
@@ -87,9 +82,8 @@ const useStyles = makeStyles( () => ({
             </form>
             </div>
         </div>
-      </div>    
+      </div>
     )
   }
-  
-  export default NewCampusView;
 
+  export default NewCampusView;
