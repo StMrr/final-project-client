@@ -9,10 +9,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import Header from './Header';
-import NewCampusView from '../views/NewStudentView';
+import NewCampusView from '../views/NewCampusView';
 import { addCampusThunk } from '../../store/thunks';
 
-class NewStudentContainer extends Component {
+class NewCampusContainer extends Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -98,6 +98,7 @@ handleSubmit = async (event) => {
     </div>
   );
 }
+}
 
 const mapDispatch = (dispatch) => {
     return {
@@ -106,3 +107,4 @@ const mapDispatch = (dispatch) => {
   };
   
   export default connect('', mapDispatch)(NewCampusContainer);
+  
