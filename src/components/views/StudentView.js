@@ -1,7 +1,8 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 const StudentView = (props) => {
-  const { student, deleteStudent } = props;
+  const { student, deleteStudent, hasCampus } = props;
 
   const isValidUrl = (url) => {
     try {
@@ -15,9 +16,15 @@ const StudentView = (props) => {
   return (
     <div>
       <h1>{student.firstname + ' ' + student.lastname}</h1>
-      <Link to={`/campus/${student.campus.id}`}>
-        <h2>{student.campus.name}</h2>
-      </Link>
+      
+      {hasCampus ? (
+        <Link to={`/campus/${student.campus.id}`}>
+          <h2>{student.campus.name}</h2>
+        </Link>
+      ) : (
+        <p>No College</p>
+      )}
+
       <p>Email: {student.email}</p>
 
       {isValidUrl(student.imageUrl) ? (
@@ -29,13 +36,12 @@ const StudentView = (props) => {
       <p>GPA: {student.gpa}</p>
       
       <Link to={`/editstudent/${student.id}`}>
-        <h2> Edit Student </h2>
+        <h2>Edit Student</h2>
       </Link>  
 
       <Link to={'/students'}>
-        <button onClick={() => deleteStudent(student.id)}> Delete Student </button>
+        <button onClick={() => deleteStudent(student.id)}>Delete Student</button>
       </Link>
-
     </div>
   );
 };

@@ -1,8 +1,8 @@
 /*==================================================
-EditCampusView.js
+EditStudentView.js
 
 The Views component is responsible for rendering a web page with data provided by the corresponding Container component.
-It constructs a React component to display the edit campus page.
+It constructs a React component to display the edit student page.
 ================================================== */
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -35,7 +35,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const EditStudentView = (props) => {
-  const { campus, handleChange, handleSubmit } = props;
+  const { student, handleChange, handleSubmit } = props;
   const classes = useStyles();
 
   // Render an Edit Student view with an input form
