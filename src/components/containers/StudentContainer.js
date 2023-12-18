@@ -1,7 +1,7 @@
 import Header from './Header';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchStudentThunk, deleteStudentThunk } from '../../store/thunks';
+import { fetchStudentThunk, deleteStudentThunk, editStudentThunk } from '../../store/thunks';
 import { StudentView } from '../views';
 
 class StudentContainer extends Component {
@@ -13,13 +13,13 @@ class StudentContainer extends Component {
 
   // Render Student view by passing student data as props to the corresponding View component
   render() {
-    const { student, deleteStudent } = this.props;
+    const { student, deleteStudent, editStudent } = this.props;
     const hasCampus = !!student.campusId; // Check if campusId exists
 
     return (
       <div>
         <Header />
-        <StudentView student={student} deleteStudent={deleteStudent} hasCampus={hasCampus} />
+        <StudentView student={student} deleteStudent={deleteStudent} hasCampus={hasCampus} editStudent={editStudent} />
       </div>
     );
   }
@@ -37,6 +37,7 @@ const mapDispatch = (dispatch) => {
   return {
     fetchStudent: (id) => dispatch(fetchStudentThunk(id)),
     deleteStudent: (studentId) => dispatch(deleteStudentThunk(studentId)),
+    editStudent: (student) => dispatch(editStudentThunk(student))
   };
 };
 

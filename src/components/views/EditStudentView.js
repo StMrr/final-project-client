@@ -1,8 +1,8 @@
 /*==================================================
-EditStudentView.js
+EditCampusView.js
 
 The Views component is responsible for rendering a web page with data provided by the corresponding Container component.
-It constructs a React component to display the edit student page.
+It constructs a React component to display the edit campus page.
 ================================================== */
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -52,27 +52,32 @@ const EditStudentView = (props) => {
           </div>
           <form style={{ textAlign: 'center' }} onSubmit={(e) => handleSubmit(e)}>
             <label style={{ color: '#11153e', fontWeight: 'bold' }}>First Name: </label>
-            <input type="text" name="firstname" value={student.firstname} required onChange={(e) => handleChange(e)} />
+            <input type="text" name="firstname" placeholder={student.firstname} required onChange={(e) => handleChange(e)} />
             <br />
             <br />
 
             <label style={{ color: '#11153e', fontWeight: 'bold' }}>Last Name: </label>
-            <input type="text" name="lastname" value={student.lastname} required onChange={(e) => handleChange(e)} />
+            <input type="text" name="lastname" placeholder={student.lastname} required onChange={(e) => handleChange(e)} />
             <br />
             <br />
 
             <label style={{ color: '#11153e', fontWeight: 'bold' }}>Email: </label>
-            <input type="text" name="email" value={student.email} required onChange={(e) => handleChange(e)} />
+            <input type="text" name="email" placeholder={student.email} required onChange={(e) => handleChange(e)} />
             <br />
             <br />
 
             <label style={{ color: '#11153e', fontWeight: 'bold' }}>Student Image URL: </label>
-            <input type="text" name="imageUrl" value={student.imageUrl} onChange={(e) => handleChange(e)} />
+            <input type="text" name="imageUrl" placeholder={student.imageUrl} onChange={(e) => handleChange(e)} />
+            <br />
+            <br />
+
+            <label style={{ color: '#11153e', fontWeight: 'bold' }}>Campus ID: </label>
+            <input type="text" name="campusId" placeholder={student.campusId} onChange={(e) => handleChange(e)} />
             <br />
             <br />
 
             <label style={{ color: '#11153e', fontWeight: 'bold' }}>Student GPA: </label>
-            <input type="text" name="gpa" value={student.gpa} onChange={(e) => handleChange(e)} />
+            <input type="text" name="gpa" placeholder={student.gpa} onChange={(e) => handleChange(e)} />
             <br />
             <br />
 
