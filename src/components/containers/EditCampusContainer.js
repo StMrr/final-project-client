@@ -49,7 +49,7 @@ class EditCampusContainer extends Component {
     event.preventDefault();  // Prevent browser reload/refresh after submit.
 
     let campus = {
-        id: this.state.id,
+        id: this.props.match.params.id,
         name: this.state.name,
         address: this.state.address,
         description: this.state.description,
@@ -58,16 +58,17 @@ class EditCampusContainer extends Component {
 
     // Add new campus in back-end database
     let newCampus = await this.props.editCampus(campus);
+    console.log(newCampus);
 
     // Update state, and trigger redirect to show the new campus
     this.setState({
-      name: "",
-      imageUrl: "",
-      address: "",
-      description: "",
-      redirect: true,
-      redirectId: newCampus.id
-    });
+        name: "",
+        imageUrl: "",
+        address: "",
+        description: "",
+        redirect: true,
+        redirectId: this.props.match.params.id
+      });
   }
 
 
@@ -75,7 +76,7 @@ class EditCampusContainer extends Component {
         // Redirect to campus page after submit
         if (this.state.redirect) {
           // Assuming you have a route for displaying a campus by its ID
-          return <Redirect to={`/campus/${this.state.campus.id}`} />;
+          return <Redirect to={`/campus/${this.props.match.params.id}`} />;
         }
 
         // Display the edit campus form via the corresponding View component
