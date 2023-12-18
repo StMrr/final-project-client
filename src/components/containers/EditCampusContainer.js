@@ -58,7 +58,6 @@ class EditCampusContainer extends Component {
 
     // Add new campus in back-end database
     let newCampus = await this.props.editCampus(campus);
-    console.log(newCampus);
 
     // Update state, and trigger redirect to show the new campus
     this.setState({
