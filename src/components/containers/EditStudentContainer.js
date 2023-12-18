@@ -10,7 +10,7 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import EditStudentView from '../views/EditCampusViewView';
+import EditStudentView from '../views/EditStudentView';
 import { editStudentThunk, fetchStudentThunk } from '../../store/thunks';
 
 class EditStudentContainer extends Component {
@@ -51,7 +51,7 @@ class EditStudentContainer extends Component {
         event.preventDefault();  // Prevent browser reload/refresh after submit.
 
         let student = {
-            id: this.state.id,
+            id: this.props.match.params.id,
             firstname: this.state.firstname,
             lastname: this.state.lastname,
             campusId: this.state.campusId,
@@ -59,7 +59,7 @@ class EditStudentContainer extends Component {
             gpa: this.state.gpa,
             imageUrl: this.state.imageUrl
         };
-        
+
         // Edit student in the back-end database
         let updatedStudent = await this.props.editStudent(student);
 
@@ -72,7 +72,7 @@ class EditStudentContainer extends Component {
             imageUrl: "",
             campusId: null,
             redirect: true,
-            redirectId: updatedStudent.id
+            redirectId: this.props.match.params.id
         });
     }
 
@@ -80,7 +80,7 @@ class EditStudentContainer extends Component {
         // Redirect to student page after submit
         if (this.state.redirect) {
             // Assuming you have a route for displaying a student by its ID
-            return <Redirect to={`/student/${this.state.student.id}`} />;
+            return <Redirect to={`/student/${this.props.match.params.id}`} />;
         }
 
         // Display the edit student form via the corresponding View component
@@ -88,7 +88,7 @@ class EditStudentContainer extends Component {
             <div>
                 <Header />
                 <EditStudentView
-                    student={this.state.student}
+                    student={this.props.student}
                     handleChange={this.handleChange}
                     handleSubmit={this.handleSubmit}
                 />

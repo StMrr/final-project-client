@@ -10,7 +10,7 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import EditCampusView from '../views/EditCampusViewView';
+import EditCampusView from '../views/EditCampusView';
 import { editCampusThunk, fetchCampusThunk } from '../../store/thunks';
 
 class EditCampusContainer extends Component {
@@ -38,7 +38,7 @@ class EditCampusContainer extends Component {
     }
 
     // Capture input data when it is entered
-    handleChange = event => {
+  handleChange = event => {
         this.setState({
             [event.target.name]: event.target.value
         });
@@ -49,25 +49,25 @@ class EditCampusContainer extends Component {
     event.preventDefault();  // Prevent browser reload/refresh after submit.
 
     let campus = {
-        id: this.state.id,
+        id: this.props.match.params.id,
         name: this.state.name,
         address: this.state.address,
         description: this.state.description,
         imageUrl: this.state.imageUrl,
     };
-    
+
     // Add new campus in back-end database
     let newCampus = await this.props.editCampus(campus);
 
     // Update state, and trigger redirect to show the new campus
     this.setState({
-      name: "", 
-      imageUrl: "", 
-      address: "", 
-      description: "", 
-      redirect: true,
-      redirectId: newCampus.id
-    });
+        name: "",
+        imageUrl: "",
+        address: "",
+        description: "",
+        redirect: true,
+        redirectId: this.props.match.params.id
+      });
   }
 
 
@@ -75,15 +75,15 @@ class EditCampusContainer extends Component {
         // Redirect to campus page after submit
         if (this.state.redirect) {
           // Assuming you have a route for displaying a campus by its ID
-          return <Redirect to={`/campus/${this.state.campus.id}`} />;
+          return <Redirect to={`/campus/${this.props.match.params.id}`} />;
         }
-    
+
         // Display the edit campus form via the corresponding View component
         return (
           <div>
             <Header />
             <EditCampusView
-              campus={this.state.campus}
+              campus={this.props.campus}
               handleChange={this.handleChange}
               handleSubmit={this.handleSubmit}
             />
@@ -98,7 +98,7 @@ const mapState = (state) => {
       campus: state.campus,
     };
   };
-  
+
 const mapDispatch = (dispatch) => {
     return {
       fetchCampus: (id) => dispatch(fetchCampusThunk(id)),
