@@ -19,8 +19,8 @@ const AllStudentsView = (props) => {
     </div>
     );
   }
-  
-  // If there is at least one student, render All Students view 
+
+  // If there is at least one student, render All Students view
   return (
     <div>
       <h1>All Students</h1>

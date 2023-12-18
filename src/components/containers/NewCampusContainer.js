@@ -21,14 +21,13 @@ class NewStudentContainer extends Component {
         address: '',
         description: '',
         imageUrl: '',
-        addressError: '', // New state for address error message
+        addressError: '' // New state for address error message
       };
     }
 
     handleChange = (event) => {
         const { name, value } = event.target;
    
-    function isValidAddress() {
 
         if (name === "address") {
             var addressRegex = /^[0-9A-Za-z\s\.,#\-]+$/;
@@ -47,7 +46,7 @@ class NewStudentContainer extends Component {
         this.setState({[name]: value,});
             
     }
-};
+
 
 handleSubmit = async (event) => {
     event.preventDefault();
@@ -73,18 +72,19 @@ handleSubmit = async (event) => {
       lastname: '',
       address: '',
       description: '',
-      imageUrl: ''
+      imageUrl: '',
+      addressError: ''
     });
   };
 
 
-  //   componentWillUnmount() {
-//     this.setState({ redirect: false, redirectId: null });
-//   }
+    componentWillUnmount() {
+    this.setState({ addressError: ''});
+  }
 
   render() {
     if (this.state) {
-      return <Redirect to={`/student/${this.state.redirectId}`} />;
+      return <Redirect to={`/campus/${this.state.addressError}`} />;
     }
 
   return (
@@ -98,3 +98,11 @@ handleSubmit = async (event) => {
     </div>
   );
 }
+
+const mapDispatch = (dispatch) => {
+    return {
+      addCampus: (campus) => dispatch(addCampusThunk(campus)),
+    };
+  };
+  
+  export default connect('', mapDispatch)(NewCampusContainer);
