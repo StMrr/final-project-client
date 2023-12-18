@@ -10,7 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 // Create styling for the input form
 const useStyles = makeStyles( () => ({
-  formContainer:{  
+  formContainer:{
     width: '500px',
     backgroundColor: '#f0f0f5',
     borderRadius: '5px',
@@ -20,7 +20,7 @@ const useStyles = makeStyles( () => ({
     flexGrow: 1,
     textAlign: 'left',
     textDecoration: 'none'
-  }, 
+  },
   customizeAppBar:{
     backgroundColor: '#11153e',
     shadows: ['none'],
@@ -81,7 +81,7 @@ const NewStudentView = (props) => {
             <br/>
             <br/>
 
-            {gpaError && <p style={{ color: 'red' }}>{gpaError}</p>} 
+            {gpaError && <p style={{ color: 'red' }}>{gpaError}</p>}
             <Button variant="contained" color="primary" type="submit">
               Submit
             </Button>
@@ -90,7 +90,7 @@ const NewStudentView = (props) => {
           </form>
           </div>
       </div>
-    </div>    
+    </div>
   )
 }
 

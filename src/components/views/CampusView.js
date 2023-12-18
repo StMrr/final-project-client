@@ -36,6 +36,9 @@ const CampusView = (props) => {
       <h1>{campus.name}</h1>
       <p>{campus.address}</p>
       <p>{campus.description}</p>
+      <Link to={`/editcampus/${campus.id}`}>
+      <button>Edit</button>
+      </Link>
       {campus.students.map( student => {
         let name = student.firstname + " " + student.lastname;
         return (
