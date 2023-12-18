@@ -17,7 +17,7 @@ class NewStudentContainer extends Component {
       gpa: '',
       redirect: false,
       redirectId: null,
-      gpaError: '', // New state for GPA error message
+      gpaError: '', 
     };
   }
 
