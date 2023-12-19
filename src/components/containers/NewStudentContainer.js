@@ -17,7 +17,8 @@ class NewStudentContainer extends Component {
       gpa: '',
       redirect: false,
       redirectId: null,
-      gpaError: '', 
+      gpaError: '',
+      campusError: '',
     };
   }
 
@@ -58,18 +59,24 @@ class NewStudentContainer extends Component {
       gpa: this.state.gpa,
     };
 
-    let newStudent = await this.props.addStudent(student);
+    try {
+      // Wrap the code that might throw an error in a try block
+      let newStudent = await this.props.addStudent(student);
 
-    this.setState({
-      firstname: '',
-      lastname: '',
-      campusId: null,
-      email: '',
-      imageUrl: '',
-      gpa: '',
-      redirect: true,
-      redirectId: newStudent.id,
-    });
+      this.setState({
+        firstname: '',
+        lastname: '',
+        campusId: null,
+        email: '',
+        imageUrl: '',
+        gpa: '',
+        redirect: true,
+        redirectId: newStudent.id,
+      });
+    } catch (error) {
+      console.error(`Error submitting student: ${error.message}`);
+      this.setState({ campusError: 'Error: Unable to add student. Please try again with a new campusId.' });
+    }
   };
 
   componentWillUnmount() {
@@ -88,6 +95,7 @@ class NewStudentContainer extends Component {
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
           gpaError={this.state.gpaError} // Pass the GPA error to the view
+          campusError={this.state.campusError}
         />
       </div>
     );
