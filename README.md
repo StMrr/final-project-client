@@ -1,26 +1,36 @@
-# client-starter-code
+# Campus Management System
 
-This repository is the client (front-end) starter code for Final Project - Full-Stack CRUD Application.
+## Team Members
+- Rawad Yakub
+- Steven Marte
+- Genesis Castillo
+- Matthew Shvorin
 
-----------
-### 1. Use the following process to ***import*** the Final Project client starter code repository to your GitHub account as the starter codebase
-1.	Log on to GitHub
-2.	Click on the + sign in the top right corner (next to the user icon)
-3.	In the dropdown menu, select "Import repository"
-4.	A new page will open
-5.	In "Your old repository’s clone URL" field, enter: `https://github.com/johnnylaicode/client-starter-code`
-6.	In "Your new repository details" field, enter your own repository name (e.g., "final-project-client")
-7.	Click on the "Begin import" button to start the process
-8.	After the process completed, your new "final-project-client" repository is created – as a completely independent codebase
-9.	From this point on, you can clone your new repository, make changes, create feature branches, and create/merge pull requests
+## Project Description
+A Campus Management System using the PERN stack (PostgreSQL, Express, React, Node.js). The system includes both client-side (front-end) and server-side (back-end) applications.
 
-----------
-### 2. Use the information below to ***clone*** the starter codebase to your local machine
-After creating the starter codebase "final-project-client" repository on GitHub (see above), you can clone it to your local machine. The instructions on how to clone a GitHub repository are available at this [link](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
+## Requirements
+### Business Requirements (BR)
+- **BR #1:** View, add, and delete campuses.
+- **BR #2:** View, add, and edit details of a single campus, including enrolled students.
+- **BR #3:** Add a new campus with real-time error handling.
+- **BR #4:** Edit campus information with real-time error handling.
+- **BR #5:** View, add, and delete students.
+- **BR #6:** View, edit, and delete details of a single student, including the enrolled campus.
+- **BR #7:** Add new students with real-time error handling.
+- **BR #8:** Edit existing student information with real-time error handling.
 
-----------
-### 3. Set up and run the client (front-end) application on your local machine
-1.	Start a terminal (e.g., Git Bash) on your local machine.
-2.  Go to the "final-project-client" folder, enter the command to install dependencies: `npm install` 
-3.	Start the client application by entering the command: `npm start` 
-4.	After the client application is successfully started, a web browser is automatically opened at the address: `http://localhost:3000` 
+### Functional Requirements (FR)
+- **FR #1:** See a list of all campuses, add a new campus, and delete a campus.
+- **FR #2:** View details of a single campus, including enrolled students, and perform actions.
+- **FR #3:** Add a new campus with real-time error handling.
+- **FR #4:** Edit campus information with real-time error handling.
+- **FR #5:** View a list of all students, add a new student, and delete a student.
+- **FR #6:** View details of a single student and perform actions.
+- **FR #7:** Add new students with real-time error handling.
+- **FR #8:** Edit existing student information with real-time error handling.
+
+### Non-Functional Requirements (NFR)
+- **NFR #1:** Display all information associated with students or campuses.
+- **NFR #2:** Buttons for adding campuses and students should lead to forms with real-time error handling.
+- **NFR #3:** Buttons for editing students and campuses should lead to forms with real-time error handling.
