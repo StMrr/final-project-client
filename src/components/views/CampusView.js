@@ -24,6 +24,10 @@ const CampusView = (props) => {
       <p>{campus.address}</p>
       <p>{campus.description}</p>
       <h3>There are no students for this campus. Try adding one using the button below.</h3>
+      <Link to={`/newstudent`}>
+        <button>Add New Student</button>
+      </Link>
+      <h2></h2>
       <button onClick={() => deleteCampus(campus.id)}>Delete Campus</button>
       </div>
     );

@@ -35,7 +35,7 @@ const useStyles = makeStyles( () => ({
 }));
 
 const NewStudentView = (props) => {
-  const { handleChange, handleSubmit, gpaError } = props; // Include gpaError from props
+  const { handleChange, handleSubmit, gpaError } = props; 
   const classes = useStyles();
 
   // Render a New Student view with an input form

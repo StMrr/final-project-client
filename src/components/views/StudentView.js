@@ -1,24 +1,46 @@
-/*==================================================
-StudentView.js
-
-The Views component is responsible for rendering web page with data provided by the corresponding Container component.
-It constructs a React component to display the single student view page.
-================================================== */
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const StudentView = (props) => {
-  const { student, editStudent } = props;
+  const { student, deleteStudent, hasCampus } = props;
 
-  // Render a single Student view
+  const isValidUrl = (url) => {
+    try {
+      new URL(url);
+      return true;
+    } catch (error) {
+      return false;
+    }
+  };
+
   return (
     <div>
-      <h1>{student.firstname + " " + student.lastname}</h1>
-      <h3>{student.campus.name}</h3>
+      <h1>{student.firstname + ' ' + student.lastname}</h1>
+      
+      {hasCampus ? (
+        <Link to={`/campus/${student.campus.id}`}>
+          <h2>{student.campus.name}</h2>
+        </Link>
+      ) : (
+        <p>No College</p>
+      )}
+
       <p>Email: {student.email}</p>
-      <p>Image URL: {student.imageUrl}</p>
+
+      {isValidUrl(student.imageUrl) ? (
+        <img src={student.imageUrl} alt={`${student.firstname} ${student.lastname}`} style={{ maxWidth: '100%' }} />
+      ) : (
+        <p style={{ color: 'red' }}>Invalid Image URL</p>
+      )}
+
       <p>GPA: {student.gpa}</p>
+      
       <Link to={`/editstudent/${student.id}`}>
-      <button>Edit Student</button>
+        <h2>Edit Student</h2>
+      </Link>  
+
+      <Link to={'/students'}>
+        <button onClick={() => deleteStudent(student.id)}>Delete Student</button>
       </Link>
     </div>
   );

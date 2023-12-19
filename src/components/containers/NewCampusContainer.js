@@ -28,63 +28,62 @@ class NewCampusContainer extends Component {
     handleChange = (event) => {
         const { name, value } = event.target;
    
+        // if (name === "address") {
+        //     var addressRegex = /^[0-9A-Za-z\s\.,#\-]+$/;
+        //     var result_address = addressRegex.test(value);
 
-        if (name === "address") {
-            var addressRegex = /^[0-9A-Za-z\s\.,#\-]+$/;
-            var result_address = addressRegex.test(value);
-
-            if(!result_address) {
-                this.setState({ addressError: "Invalid address format"});
-                return false;
-            }
-            else {
-                this.setState({addressError: ''});
-                // console.log("Address is valid:", address);
-                // return true;
-            }     
-        }
-        this.setState({[name]: value,});
-            
+        //     if(!result_address) {
+        //         this.setState({ addressError: "Invalid address format"});
+        //         return false;
+        //     }
+        //     else {
+        //         this.setState({addressError: ''});
+        //         // console.log("Address is valid:", address);
+        //         // return true;
+        //     }     
+        // }
+        this.setState({
+            [name]: value,
+        }); 
     }
 
 
 handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (this.state.addressError) {
-        // If there's a address error, do not proceed with form submission
-        return;
-      }
+    // if (this.state.addressError) {
+    //     // If there's a address error, do not proceed with form submission
+    //     return;
+    //   }
 
     
       let campus = {
-        firstname: this.state.firstname,
-        lastname: this.state.lastname,
+        name: this.state.name,
         address: this.state.address,
         description: this.state.description,
         imageUrl: this.state.imageUrl
       };
 
-      let newStudent = await this.props.addCampus(campus);
+      let newCampus = await this.props.addCampus(campus);
 
     this.setState({
-      firstname: '',
-      lastname: '',
-      address: '',
+      name: '',
       description: '',
+      address: '',
       imageUrl: '',
-      addressError: ''
+      redirect: true,
+      redirectId: newCampus.id
     });
   };
 
 
     componentWillUnmount() {
-    this.setState({ addressError: ''});
+    this.setState({ redirect: false, redirectId: null });
   }
 
   render() {
-    if (this.state) {
-      return <Redirect to={`/campus/${this.state.addressError}`} />;
+    if (this.state.redirect) {
+      return <Redirect to={`/campus/${this.state.redirectId}`} />;
     }
 
   return (
@@ -93,7 +92,7 @@ handleSubmit = async (event) => {
       <NewCampusView
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
-        addressError={this.state.addressError} // Pass the address error to the view
+        // addressError={this.state.addressError} // Pass the address error to the view
       />
     </div>
   );
@@ -106,5 +105,4 @@ const mapDispatch = (dispatch) => {
     };
   };
   
-  export default connect('', mapDispatch)(NewCampusContainer);
-  
+  export default connect(null, mapDispatch)(NewCampusContainer);
