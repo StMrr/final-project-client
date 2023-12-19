@@ -74,7 +74,7 @@ handleSubmit = async (event) => {
       address: '',
       imageUrl: '',
       redirect: true,
-      redirectId: newCampus.campusId
+      redirectId: newCampus.id
     });
   };
 
