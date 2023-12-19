@@ -28,7 +28,6 @@ class NewCampusContainer extends Component {
     handleChange = (event) => {
         const { name, value } = event.target;
    
-
         // if (name === "address") {
         //     var addressRegex = /^[0-9A-Za-z\s\.,#\-]+$/;
         //     var result_address = addressRegex.test(value);
@@ -45,8 +44,7 @@ class NewCampusContainer extends Component {
         // }
         this.setState({
             [name]: value,
-        });
-            
+        }); 
     }
 
 

@@ -38,6 +38,7 @@ const mapDispatch = (dispatch) => {
     fetchStudent: (id) => dispatch(fetchStudentThunk(id)),
     deleteStudent: (studentId) => dispatch(deleteStudentThunk(studentId)),
     editStudent: (student) => dispatch(editStudentThunk(student))
+
   };
 };
 
